@@ -4,6 +4,7 @@ FROM python:3.9-slim
 RUN apt-get update && \
     apt-get install -y chromium-driver && \
     apt-get install -y wget gnupg unzip && \
+    apt-get install -y chromium-driver jq && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Python libraries
