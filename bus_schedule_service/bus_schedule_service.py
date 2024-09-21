@@ -352,6 +352,7 @@ class ScheduleRunner:
             time.sleep(1)
 
 if __name__ == "__main__":
+    print("Starting the application...")
     mqtt_host = os.getenv('MQTT_HOST')
     mqtt_port = os.getenv('MQTT_PORT')
     mqtt_user = os.getenv('MQTT_USER')

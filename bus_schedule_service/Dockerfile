@@ -1,23 +1,28 @@
 FROM python:3.9-slim
 
-# Install necessary dependencies
+# Install necessary dependencies in one RUN command
 RUN apt-get update && \
-    apt-get install -y chromium-driver && \
-    apt-get install -y wget gnupg unzip && \
-    apt-get install -y chromium-driver jq && \
+    apt-get install -y \
+        chromium-driver \
+        wget \
+        gnupg \
+        unzip \
+        jq && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Python libraries
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
-# Copy the code into the container
+# Set the working directory
 WORKDIR /usr/src/app
+
+# Copy the application code into the container
 COPY bus_schedule_service.py .
 COPY run.sh .
 
-# Make the run.sh script executable
+# Make run.sh executable
 RUN chmod +x run.sh
 
-# Run the script when the container launches
+# Run the application when the container starts
 CMD [ "/usr/src/app/run.sh" ]

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Load environment variables from Home Assistant options
+echo "Loading configs..."
 MQTT_HOST=$(jq --raw-output '.mqtt_host' /data/options.json)
 MQTT_PORT=$(jq --raw-output '.mqtt_port' /data/options.json)
 MQTT_USER=$(jq --raw-output '.mqtt_user' /data/options.json)
