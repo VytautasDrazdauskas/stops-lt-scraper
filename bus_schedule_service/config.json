@@ -1,6 +1,6 @@
 {
   "name": "VVT Bus Schedule Service",
-  "version": "1.0",
+  "version": "1.1",
   "slug": "bus_schedule_service",
   "description": "Scrapes  Vilnius bus timetables and publishes them via MQTT",
   "arch": [
