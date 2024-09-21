@@ -1,28 +1,41 @@
 {
-    "name": "VVT Bus Schedule Service",
-    "version": "1.0",
-    "slug": "bus_schedule_service",
-    "description": "Scrapes  Vilnius bus timetables and publishes them via MQTT",
-    "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
-    "startup": "services",
-    "boot": "auto",
-    "options": {
-      "mqtt_host": "localhost",
-      "mqtt_port": 1883,
-      "mqtt_user": "mqtt_user",
-      "mqtt_password": "password",
-      "urls": [
-        "https://www.stops.lt/vilnius/#bus/68/a-b/3913",
-        "https://www.stops.lt/vilnius/#bus/68/b-a/3913"
-      ]
-    },
-    "schema": {
-      "mqtt_host": "str",
-      "mqtt_port": "int",
-      "mqtt_user": "str",
-      "mqtt_password": "str",
-      "urls": ["str"]
-    },
-    "image": "local/bus_schedule_service"
+  "name": "VVT Bus Schedule Service",
+  "version": "1.0",
+  "slug": "bus_schedule_service",
+  "description": "Scrapes  Vilnius bus timetables and publishes them via MQTT",
+  "arch": [
+    "armhf",
+    "armv7",
+    "aarch64",
+    "amd64",
+    "i386"
+  ],
+  "startup": "services",
+  "boot": "auto",
+  "options": {
+    "mqtt_host": "localhost",
+    "mqtt_port": 1883,
+    "mqtt_user": "mqtt_user",
+    "mqtt_password": "password",
+    "urls": [
+      "https://www.stops.lt/vilnius/#bus/68/a-b/3913",
+      "https://www.stops.lt/vilnius/#bus/68/b-a/3913"
+    ]
+  },
+  "schema": {
+    "mqtt_host": "str",
+    "mqtt_port": "int",
+    "mqtt_user": "str",
+    "mqtt_password": "str",
+    "urls": [
+      "str"
+    ]
+  },
+  "build_from": {
+    "aarch64": "python:3.9-slim",
+    "amd64": "python:3.9-slim",
+    "armhf": "python:3.9-slim",
+    "armv7": "python:3.9-slim",
+    "i386": "python:3.9-slim"
   }
-  
+}
