@@ -352,14 +352,11 @@ class ScheduleRunner:
             time.sleep(1)
 
 if __name__ == "__main__":
-    # Hardcoded MQTT details for testing
-    mqtt_host = os.getenv('MQTT_HOST', None)
-    mqtt_port = int(os.getenv('MQTT_PORT', 1883))
-    mqtt_user = os.getenv('MQTT_USER', None)
-    mqtt_password = os.getenv('MQTT_PASSWORD', None)
-
-    # Read URLs from the environment
-    urls_env = os.getenv('URLS', None)
+    mqtt_host = os.getenv('MQTT_HOST')
+    mqtt_port = os.getenv('MQTT_PORT')
+    mqtt_user = os.getenv('MQTT_USER')
+    mqtt_password = os.getenv('MQTT_PASSWORD')
+    urls_env = os.getenv('URLS')
 
     # Check if essential configurations are provided
     if not mqtt_host or not mqtt_port or not mqtt_user or not mqtt_password or not urls_env:
