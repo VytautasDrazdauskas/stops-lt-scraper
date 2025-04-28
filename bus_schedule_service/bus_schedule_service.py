@@ -361,7 +361,7 @@ class ScheduleRunner:
             time.sleep(1)
 
 if __name__ == "__main__":
-    print(f"{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")} Starting the application...")
+    print("Starting the application...")
     mqtt_host = os.getenv('MQTT_HOST')
     mqtt_port = os.getenv('MQTT_PORT')
     mqtt_user = os.getenv('MQTT_USER')
@@ -407,6 +407,6 @@ if __name__ == "__main__":
     runner.start_schedule(urls)
 
     
-    print(f"{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")} Closing bus schedule service.")
+    print("Closing bus schedule service.")
     # Close the scraper when done
     scraper.close()
