@@ -264,8 +264,6 @@ class BusScheduleService:
     def _get_current_day_type(self):
         """Determine if today is a workday, saturday, or sunday."""
         weekday = datetime.now().weekday()  # 0 = Monday, 6 = Sunday
-
-        return 'saturday'
         
         if weekday < 5:  # Monday to Friday are workdays
             return 'workday'
