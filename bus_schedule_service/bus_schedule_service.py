@@ -13,7 +13,8 @@ import sys
 TIMETABLE_TYPES = {
     'darbo diena': 'workday',
     'šeštadienis': 'saturday',
-    'sekmadienis': 'sunday'
+    'sekmadienis': 'sunday',
+    'savaitgalis ir šventinė diena': 'weekend'
 }
 
 class TimetableScraper:
@@ -224,10 +225,18 @@ class BusScheduleService:
             # Determine today's timetable file based on the current weekday
             today_day_type = self._get_current_day_type()
 
-            if (day_type == today_day_type):
+            if (day_type == today_day_type or 
+                ((today_day_type == 'saturday' or today_day_type == 'sunday') and day_type == 'weekend')):
                 timetable = self.manager.load_timetable_filename(filename)
+
+                if (len(timetable) == 0):
+                    continue
             else:
                 continue  # Skip if no timetable for today
+
+            if (len(timetable) == 0):
+                print(f"No timetable is found for {today_day_type} bus number {bus_number} at stop {stop_id} direction {direction}")
+                return
 
             current_departure, next_departure = self._get_next_departures(timetable, today_day_type, bus_number, stop_id, direction)
 
@@ -255,6 +264,8 @@ class BusScheduleService:
     def _get_current_day_type(self):
         """Determine if today is a workday, saturday, or sunday."""
         weekday = datetime.now().weekday()  # 0 = Monday, 6 = Sunday
+
+        return 'saturday'
         
         if weekday < 5:  # Monday to Friday are workdays
             return 'workday'
