@@ -361,7 +361,7 @@ class ScheduleRunner:
             time.sleep(1)
 
 if __name__ == "__main__":
-    print("Starting the application...")
+    print(f"{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")} Starting the application...")
     mqtt_host = os.getenv('MQTT_HOST')
     mqtt_port = os.getenv('MQTT_PORT')
     mqtt_user = os.getenv('MQTT_USER')
@@ -388,15 +388,25 @@ if __name__ == "__main__":
 
     urls = urls_env.split(',') 
     
-    # Initialize components
+    # Initialize components    
+    print("Initializing components...")
+    print("Initializing timetable scraper.")
     scraper = TimetableScraper()
+    print("Initializing timetable manager.")
     manager = TimetableManager()
+    print("Initializing MQTT publisher.")
     publisher = MQTTPublisher(mqtt_host, mqtt_port, mqtt_user, mqtt_password, 'stops_lt')
+    print("Initializing Bus Schedule Service.")
     bus_service = BusScheduleService(scraper, manager, publisher)
 
+    print("Initializing scheduler.")
     # Start the schedule runner
     runner = ScheduleRunner(bus_service)
+    
+    print("Starting schedule.")
     runner.start_schedule(urls)
 
+    
+    print(f"{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")} Closing bus schedule service.")
     # Close the scraper when done
     scraper.close()
